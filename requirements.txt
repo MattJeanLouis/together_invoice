@@ -1,0 +1,8 @@
+streamlit
+pandas
+openpyxl
+invoice2data
+PyYAML
+pytesseract
+pdf2image
+pdfplumber

@@ -1,0 +1,36 @@
+issuer: Cursor
+keywords:
+  - Cursor
+  - Facture
+fields:
+  invoice_number:
+    parser: regex
+    regex: (?:Numéro de facture|^).*?(BCF[0-9A-Z]+)
+  date:
+    parser: regex
+    regex: Date d['']émission\s+(\d{1,2}\s+[a-zéûôA-Z]+\s+\d{4})
+  amount:
+    parser: regex
+    regex: Total\s+(\d+[,.]\d{2}\s*\$US)
+  due_date:
+    parser: regex
+    regex: Date d['']échéance\s+(\d{1,2}\s+[a-zéûôA-Z]+\s+\d{4})
+  client:
+    parser: regex
+    regex: Facturer à\s*(?:[^\n]*\s)?(BODY CONNECT)
+  vat_number:
+    parser: regex
+    regex: (FR VAT FR[0-9]+)
+options:
+  currency: USD
+  date_formats:
+    - '%d %B %Y'
+  decimal_separator: ','
+  remove_whitespace: false
+  languages:
+    - fr
+  required_fields:
+    - issuer
+    - invoice_number
+    - date
+    - amount

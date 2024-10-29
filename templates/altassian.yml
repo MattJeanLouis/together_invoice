@@ -1,0 +1,39 @@
+issuer: Atlassian Pty Ltd
+keywords:
+  - Atlassian Pty Ltd
+  - Invoice
+fields:
+  invoice_number:
+    parser: regex
+    regex: Invoice number:\s*(IN-[A-Z]{2}-[0-9-]+)
+  date:
+    parser: regex
+    regex: Invoice date:\s*([A-Za-z]+\s+\d{1,2},\s+\d{4})
+  amount:
+    parser: regex
+    regex: Invoice Total:\s*USD\s*(\d+\.\d{2})
+  client:
+    parser: regex
+    regex: (?:Sold to:|Licensed to:)\s*BODY CONNECT
+  vat_number:
+    parser: regex
+    regex: VAT No\.:\s*(FR[0-9]+)
+  description:
+    parser: regex
+    regex: Site Address:\s*([^\n]+)
+  billing_period:
+    parser: regex
+    regex: Billing period:\s*([^\n]+)
+options:
+  currency: USD
+  date_formats:
+    - '%b %d, %Y'
+  decimal_separator: '.'
+  remove_whitespace: false
+  languages:
+    - en
+  required_fields:
+    - issuer
+    - invoice_number
+    - date
+    - amount

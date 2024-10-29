@@ -1,0 +1,17 @@
+issuer: OpenAI
+keywords:
+  - OpenAI
+  - Receipt
+fields:
+  invoice_number:
+    parser: regex
+    regex: Invoice number\s+([0-9A-Z]+)
+  date:
+    parser: regex
+    regex: Date paid\s+([A-Za-z]+ [0-9]{1,2}, [0-9]{4})
+  amount:
+    parser: regex
+    regex: Total\s+\$([0-9.]+)
+  client:
+    parser: regex
+    regex: Bill to[\s\S]*?([A-Z]+ [A-Z]+)[\s\S]*?[0-9]
